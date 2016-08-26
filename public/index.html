@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>movie app</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<div id="app">
+
+    <input id="search-input" type="text" placeholder="Search...">
+
+    <span>sort:</span>
+    <input id="title-input" type="radio" name="sort-group" value="TITLE" checked="">
+    <label for="title-input">Title</label>,
+
+    <input id="date-input" type="radio" name="sort-group" value="DATE">
+    <label for="date-input">Date</label>
+
+    <ul class="film-list">
+    </ul>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
+<script src="controllers/controller.js"></script>
+</body>
+</html>
