@@ -15,7 +15,7 @@ This repository contains the code for a RESTful Application that allows users to
 
 From your directory clone this repository using:
 
-    git clone https://github.com/aasagba/.git  
+    git clone https://github.com/aasagba/movie-app.git  
 
 Then install the Node modules with
 

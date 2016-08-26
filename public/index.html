@@ -1,29 +1,37 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="myApp">
 <head>
     <meta charset="utf-8">
     <title>movie app</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-<div id="app">
+<div id="app" ng-controller="AppCtrl">
 
-    <input id="search-input" type="text" placeholder="Search...">
+    <input id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="searchMovies()">
 
     <span>sort:</span>
-    <input id="title-input" type="radio" name="sort-group" value="TITLE" checked="">
+    <input id="title-input" type="radio" data-ng-model="sortBy.field" value="Title" name="sort-group" checked="checked">
     <label for="title-input">Title</label>,
 
-    <input id="date-input" type="radio" name="sort-group" value="DATE">
+    <input id="date-input" type="radio" data-ng-model="sortBy.field" value="Year" name="sort-group">
     <label for="date-input">Date</label>
 
     <ul class="film-list">
+        <li ng-repeat="movie in results | orderBy:sortBy.field" ng-click="showDetails = ! showDetails">
+            {{movie.Title}}
+            <div ng-show="showDetails">
+                Year: {{movie.Year}}, imdbID: {{movie.imdbID}} <img src="{{movie.Poster}}"/></div>
+            </div>
+        </li>
     </ul>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
 <script src="controllers/controller.js"></script>
 </body>
