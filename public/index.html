@@ -1,33 +1,168 @@
 <!doctype html>
-<html class="no-js" ng-app="myApp">
+<html class="no-js" ng-app="myApp" lang="en">
 <head>
     <meta charset="utf-8">
     <title>movie app</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+
+        .header h1 {
+            font-family: GT-Walsheim-Bold;
+        }
+        .header h2 {
+            font-family: GT-Walsheim-Light;
+        }
+        .header span {
+            color: #01d2bd
+        }
+        .navbar {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-radius: 0;
+        }
+        .jumbotron {
+            margin-bottom: 0;
+        }
+        .image {
+            float:left;
+        }
+        .image img {
+            width: 101px;
+            height: 175px
+        }
+        .thumbnail img {
+            width: 160px;
+            height: 150px;
+        }
+        .thumbnail {
+            border: none;
+            margin-bottom: 30px;
+            padding: 13px;
+        }
+        .thumbnail .caption {
+            padding: 0 9px;
+        }
+        .details {
+            float:left;
+        }
+        ul li {
+            display:inline-block;
+        }
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        .clearfix { display: inline-block; }
+        /* start commented backslash hack \*/
+        * html .clearfix { height: 1%; }
+        .clearfix { display: block; }
+        /* close commented backslash hack */
+        nav h3, nav label, nav span {
+            color: white;
+        }
+        nav h2 {
+            margin-top: 0;
+            color:white
+        }
+        .caption h3 {
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .caption h3 ul {
+            color: red;
+            list-style-type: disc;
+            font-size: 18px;
+            padding-left: 0px;
+            list-style-position: inside;
+            margin-bottom: 5px;
+        }
+        .caption h3 ul li {
+            display: list-item;
+        }
+        .caption .year {
+            font-size: 14px;
+        }
+        .caption .title {
+            font-size: 18px;
+        }
+        .caption .year {
+            color: gray;
+            font-size: 14px;
+        }
+        .sort {
+            margin-top: 10px;
+            color:white;
+        }
+        .sort span, .sort label {
+            font-family: GT-Walsheim-Medium;
+        }
+
+        h2.results {
+            font-family: GT-Walsheim-Light;
+            font-size: 25px;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color: #01d2bd">
+
 <div id="app" ng-controller="AppCtrl">
 
-    <input id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="searchMovies()">
-
-    <span>sort:</span>
-    <input id="title-input" type="radio" data-ng-model="sortBy.field" value="Title" name="sort-group" checked="checked">
-    <label for="title-input">Title</label>,
-
-    <input id="date-input" type="radio" data-ng-model="sortBy.field" value="Year" name="sort-group">
-    <label for="date-input">Date</label>
-
-    <ul class="film-list">
-        <li ng-repeat="movie in results | orderBy:sortBy.field" ng-click="showDetails = ! showDetails">
-            {{movie.Title}}
-            <div ng-show="showDetails">
-                Year: {{movie.Year}}, imdbID: {{movie.imdbID}} <img src="{{movie.Poster}}"/></div>
+    <div class="jumbotron"  style="background-color:black;height: 250px;">
+        <div class="container text-center">
+            <div class="header" style="left: 50%;top:50%;color:white;text-align: center;">
+                <h1>OMDb</h1>
+                <h2>The Open <span>Movie</span> Database</h2>
+                <input id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="searchMovies()">
             </div>
-        </li>
-    </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <nav class="navbar">
+            <div class="nav navbar-nav">
+                <h2 class="results">Results</h2>
+            </div>
+
+
+            <div class="nav navbar-nav navbar-right sort">
+                <span>SORT BY:</span>
+                <input id="title-input" type="radio" data-ng-model="sortBy.field" value="Title" name="sort-group" checked="checked">
+                <label for="title-input">Title</label>,
+                <input id="date-input" type="radio" data-ng-model="sortBy.field" value="Year" name="sort-group">
+                <label for="date-input">Date</label>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div ng-repeat="movie in results | orderBy:sortBy.field">
+                <!--<div ng-class="{ 'container': ($index + 1) % 3 == 0 }">-->
+                    <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                    <div class="col-sm-4" >
+                        <div class="thumbnail clearfix">
+                            <img src="{{movie.Poster != 'N/A' ? movie.Poster : 'images/default.png'}}" class="img-responsive pull-left" class="thumbnail" alt="Image">
+                            <div class="caption pull-right" style="width: 54%;">
+                                <h3 class="type"><ul><li>{{movie.Type}}</li></ul></h3>
+                                <h3 class="title">{{movie.Title}}</h3>
+                                <h3 class="year">{{movie.Year}}</h3>
+                                <!--<h3>{{movie.imdbID}}</h3>-->
+                            </div>
+                        </div>
+                    </div>
+
+               <!-- </div>-->
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>-->

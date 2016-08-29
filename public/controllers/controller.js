@@ -6,15 +6,6 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.results = [];
     $scope.movieName = "";
     $scope.sortBy = {field: "Title"};
-    // 1. on input change run function to query api and save results in array and render screen
-
-    /* 2. render by sorting data and displaying in ui
-            - sort
-            - empty data in UI
-            - loop data and print film name in UI
-            - append div film info in li
-            - event to show film info on li click
-    */
 
     $scope.searchMovies = function () {
         console.log("in searchMovies");
@@ -25,6 +16,5 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
             $scope.results = response;
         });
     }
-
 
 }]);

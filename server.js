@@ -21,12 +21,10 @@ app.get('/movie/:movie', function (req, res) {
         }
 
         datas = body.Search;
-
         console.log(JSON.stringify(datas));
 
         res.json(datas);
     });
-
 
 });
 
