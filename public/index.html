@@ -11,19 +11,31 @@
     <link rel="stylesheet" href="styles/main.css">
     <style>
 
+        .header {
+            clear: both;
+        }
         .header h1 {
-            font-family: GT-Walsheim-Bold;
+            font-family: GT-Walsheim-Medium;
+            font-size: 30px;
         }
         .header h2 {
             font-family: GT-Walsheim-Light;
+            font-size: 23px;
+            color:#aebac8;
         }
-        .header span {
+        .header h2 span {
             color: #01d2bd
+        }
+        .header .search-input{
+            margin-top: 20px;
         }
         .navbar {
             margin-top: 40px;
             margin-bottom: 20px;
             border-radius: 0;
+        }
+        .navbar-right {
+            margin-right: 0;
         }
         .jumbotron {
             margin-bottom: 0;
@@ -38,6 +50,8 @@
         .thumbnail img {
             width: 160px;
             height: 150px;
+            display: block;
+            margin-right: 15px;
         }
         .thumbnail {
             border: none;
@@ -79,7 +93,7 @@
             margin-bottom: 5px;
         }
         .caption h3 ul {
-            color: red;
+            /*color: red;*/
             list-style-type: disc;
             font-size: 18px;
             padding-left: 0px;
@@ -100,46 +114,158 @@
             font-size: 14px;
         }
         .sort {
-            margin-top: 10px;
+            /*margin-top: 10px;*/
             color:white;
+            font-size: 11px;
+            float: right;
+        }
+        .sort .label {
+            line-height: 33px;
         }
         .sort span, .sort label {
             font-family: GT-Walsheim-Medium;
+            float: left;
         }
 
         h2.results {
             font-family: GT-Walsheim-Light;
             font-size: 25px;
         }
+        .round {
+            width: 100%;
+            border-radius: 15px;
+            border: 1px #000 solid;
+            padding: 5px 5px 5px 34px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 5;
+        }
+
+        .corner {
+            position: absolute;
+            top: 22px;
+            right: 4px;
+            height: 26px;
+            width: 60px;
+            z-index: 10;
+            border-radius: 10px;
+            border: none;
+            background: white;
+            color: black;
+
+        }
+        .search-icon {
+            z-index: 10;
+            border: none;
+            background-image: url("images/search.png");
+            background-repeat: no-repeat;
+            background-position-x: 10px;
+            background-position-y: 5px;
+            background-size: 20px 20px;
+        }
+
+        .search {
+            position: relative;
+            /*width: 430px;*/
+            height: 30px;
+            margin: 0 auto;
+            font-family: GT-Walsheim-Light;
+            color: black;
+            float: none;
+        }
+        .series {
+            color: #ed164f;
+        }
+        .movie {
+            color: #009ddc;
+        }
+        .toggle {
+            margin:4px;
+            background-color:white;
+            border-radius:4px;
+            /*border:1px solid #D0D0D0;*/
+            overflow:auto;
+            float:left;
+        }
+
+        .toggle label {
+            float:left;
+            /*width:2.0em;*/
+            margin-bottom: 0;
+        }
+
+        .toggle label span {
+            text-align:center;
+            padding:3px 0px;
+            display:block;
+            cursor: pointer;
+            color: black;
+            padding: 5px 12px;
+        }
+
+        .toggle label input {
+            position:absolute;
+            top:-20px;
+            left: -40px;
+        }
+
+        .toggle .input-checked {
+            background-color:#019a8b;
+            color:white;
+        }
+        .logo {
+            position: absolute;
+            left: 5%;
+            top: 3%;
+        }
+        .logo img {
+            width: 90px;
+            height: 40px;
+        }
+
     </style>
 </head>
 <body style="background-color: #01d2bd">
 
 <div id="app" ng-controller="AppCtrl">
 
-    <div class="jumbotron"  style="background-color:black;height: 250px;">
+    <div class="jumbotron"  style="background-color:black;height: 37%;">
+
         <div class="container text-center">
+            <div class="logo">
+                <a href="/" title="Return to the homepage" id="logo" class="logo">
+                    <img src="images/logo.png" alt="OMDb logo" />
+                </a>
+            </div>
             <div class="header" style="left: 50%;top:50%;color:white;text-align: center;">
                 <h1>OMDb</h1>
                 <h2>The Open <span>Movie</span> Database</h2>
-                <input id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="searchMovies()">
+                <div class="search col-sm-6">
+                    <input class="search-input round search-icon" id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="searchMovies()">
+                    <input type="submit" class="corner" value="submit">
+                </div>
             </div>
         </div>
     </div>
 
     <div class="container-fluid">
         <nav class="navbar">
-            <div class="nav navbar-nav">
+            <div class="nav navbar-nav col-xs-4">
                 <h2 class="results">Results</h2>
             </div>
 
 
             <div class="nav navbar-nav navbar-right sort">
-                <span>SORT BY:</span>
-                <input id="title-input" type="radio" data-ng-model="sortBy.field" value="Title" name="sort-group" checked="checked">
-                <label for="title-input">Title</label>,
-                <input id="date-input" type="radio" data-ng-model="sortBy.field" value="Year" name="sort-group">
-                <label for="date-input">Date</label>
+                <span class="label">SORT BY</span>
+                <div class="toggle">
+                    <label><input id="title-input" type="radio" data-ng-model="sortBy.field" value="Title"
+                                  name="sort-group" checked="checked"><span ng-class="{ 'input-checked': sortBy.field == 'Title' }">Title</span></label>
+                </div>
+                <div class="toggle">
+                    <label><input id="date-input" type="radio" data-ng-model="sortBy.field" value="Year"
+                                  name="sort-group"><span ng-class="{ 'input-checked': sortBy.field == 'Year' }">Date</span></label>
+                </div>
             </div>
         </nav>
 
@@ -150,8 +276,9 @@
                     <div class="col-sm-4" >
                         <div class="thumbnail clearfix">
                             <img src="{{movie.Poster != 'N/A' ? movie.Poster : 'images/default.png'}}" class="img-responsive pull-left" class="thumbnail" alt="Image">
-                            <div class="caption pull-right" style="width: 54%;">
-                                <h3 class="type"><ul><li>{{movie.Type}}</li></ul></h3>
+
+                            <div class="caption" style="">
+                                <h3 class="type" ng-class="movie.Type == 'movie' ? 'movie' : 'series'"><ul><li>{{movie.Type}}</li></ul></h3>
                                 <h3 class="title">{{movie.Title}}</h3>
                                 <h3 class="year">{{movie.Year}}</h3>
                                 <!--<h3>{{movie.imdbID}}</h3>-->
