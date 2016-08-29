@@ -1,0 +1,272 @@
+$primary-color: #01d2bd;
+$secondary-color: black;
+$header-primary: white;
+$header-secondary: #aebac8;
+$movie:#009ddc;
+$movie-year:$header-secondary;
+$series:#ed164f;
+$game: #8051AE;
+$checked: #019a8b;
+$unchecked: ;
+
+
+@font-face {
+  font-family: GT-Walsheim-Bold;
+  src: url(../fonts/GT-Walsheim-Bold.woff);
+}
+
+@font-face {
+  font-family: GT-Walsheim-Medium;
+  src: url(../fonts/gt-walsheim-medium-web.woff);
+}
+
+@font-face {
+  font-family: GT-Walsheim-Light;
+  src: url(../fonts/GT-Walsheim-Light.woff);
+}
+
+.header {
+  clear: both;
+  h1 {
+    font-family: GT-Walsheim-Medium;
+    font-size: 30px;
+  }
+  h2 {
+    font-family: GT-Walsheim-Light;
+    font-size: 23px;
+    color: $header-secondary;
+    span {
+      color: $primary-color;
+    }
+  }
+  .search-input {
+    margin-top: 20px;
+  }
+}
+
+.navbar {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-radius: 0;
+}
+
+.navbar-right {
+  margin-right: 0;
+}
+
+.jumbotron {
+  margin-bottom: 0;
+}
+
+.image {
+  float: left;
+  img {
+    width: 101px;
+    height: 175px;
+  }
+}
+
+.thumbnail {
+  img {
+    width: 160px;
+    height: 150px;
+    display: block;
+    margin-right: 15px;
+  }
+  border: none;
+  margin-bottom: 30px;
+  padding: 13px;
+  .caption {
+    padding: 0 9px;
+  }
+}
+
+.details {
+  float: left;
+}
+
+ul li {
+  display: inline-block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+  display: inline-block;
+}
+
+/* start commented backslash hack \*/
+
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
+/* close commented backslash hack */
+
+nav {
+  h3, label, span {
+    color: white;
+  }
+  h2 {
+    margin-top: 0;
+    color: white;
+  }
+}
+
+.caption {
+  h3 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    ul {
+      /*color: red;*/
+      list-style-type: disc;
+      font-size: 14px;
+      padding-left: 0px;
+      list-style-position: inside;
+      margin-bottom: 5px;
+      li {
+        display: list-item;
+      }
+    }
+  }
+  .year {
+    font-size: 14px;
+    color: $movie-year;
+    font-size: 14px;
+    font-family: GT-Walsheim-Light;
+  }
+  .title {
+    font-size: 16px;
+    font-family: GT-Walsheim-Bold;
+  }
+  .type {
+    font-family: GT-Walsheim-Medium;
+  }
+}
+
+.sort {
+  /*margin-top: 10px;*/
+  color: white;
+  font-size: 11px;
+  float: right;
+  .label {
+    line-height: 33px;
+  }
+  span, label {
+    font-family: GT-Walsheim-Medium;
+    float: left;
+  }
+}
+
+h2.results {
+  font-family: GT-Walsheim-Light;
+  font-size: 25px;
+}
+
+.round {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px $secondary-color solid;
+  padding: 5px 5px 5px 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.corner {
+  position: absolute;
+  top: 22px;
+  right: 4px;
+  height: 26px;
+  width: 60px;
+  z-index: 10;
+  border-radius: 10px;
+  border: none;
+  background: white;
+  color: $secondary-color;
+}
+
+.search-icon {
+  z-index: 10;
+  border: none;
+  background-image: url("../images/search.png");
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 5px;
+  background-size: 20px 20px;
+}
+
+.search {
+  position: relative;
+  /*width: 430px;*/
+  height: 30px;
+  margin: 0 auto;
+  font-family: GT-Walsheim-Light;
+  color: $secondary-color;
+  float: none;
+}
+
+.series {
+  color: $series;
+}
+
+.movie {
+  color: $movie;
+}
+
+.game {
+  color: $game;
+}
+
+.toggle {
+  margin: 4px;
+  background-color: white;
+  border-radius: 4px;
+  /*border:1px solid #D0D0D0;*/
+  overflow: auto;
+  float: left;
+  label {
+    float: left;
+    /*width:2.0em;*/
+    margin-bottom: 0;
+    span {
+      text-align: center;
+      padding: 3px 0px;
+      display: block;
+      cursor: pointer;
+      color: $secondary-color;
+      padding: 5px 12px;
+    }
+    input {
+      position: absolute;
+      top: -20px;
+      left: -40px;
+    }
+  }
+  .input-checked {
+    background-color: $checked;
+    color: white;
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 5%;
+  top: 3%;
+  img {
+    width: 90px;
+    height: 40px;
+  }
+}
