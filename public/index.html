@@ -21,8 +21,8 @@
                         <h1>OMDb</h1>
                         <h2>The Open <span>Movie</span> Database</h2>
                         <div class="search col-sm-6">
-                            <input class="search-input round search-icon" id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="searchMovies()">
-                            <input type="submit" class="corner" value="submit">
+                            <input class="search-input round search-icon" id="search-input" type="text" placeholder="Search..." ng-model="movieName" ng-change="">
+                            <input type="submit" class="corner" value="submit" ng-click="searchMovies()">
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     </div>
                 </nav>
                 <div class="row">
-                    <div ng-animate="'animate'" ng-repeat="movie in results | orderBy:sortBy.field">
+                    <div ng-animate="'animate'" class="item" ng-repeat="movie in results | orderBy:sortBy.field">
                         <div class="clearfix" ng-if="$index % 3 == 0"></div>
                         <div class="col-sm-4" >
                             <div class="thumbnail clearfix">
