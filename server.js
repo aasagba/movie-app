@@ -1,25 +1,13 @@
 // modules
 var express = require('express');
 var request = require('request');
-var sass = require('node-sass');
-
 var app = express();
-
-sass.render({
-    file: main.scss,
-    [, options..]
-}, function(err, result) { /*...*/ });
-// OR
-var result = sass.renderSync({
-    data: scss_content
-        [, options..]
-});
 
 // set the static files location
 app.use(express.static(__dirname + "/public"));
 
 app.get('/movie/:movie', function (req, res) {
-    console.log("I received a get request");
+    //console.log("Movie request recieved");
 
     var movie = req.params.movie;
     var url = 'http://www.omdbapi.com/?s=' + movie;

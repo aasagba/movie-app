@@ -10,8 +10,15 @@
   font-family: GT-Walsheim-Light;
   src: url(../fonts/GT-Walsheim-Light.woff); }
 
+body {
+  background-color: #01d2bd; }
+
 .header {
-  clear: both; }
+  clear: both;
+  left: 50%;
+  top: 50%;
+  color: white;
+  text-align: center; }
   .header h1 {
     font-family: GT-Walsheim-Medium;
     font-size: 30px; }
@@ -33,7 +40,8 @@
   margin-right: 0; }
 
 .jumbotron {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  background-color: black; }
 
 .image {
   float: left; }
@@ -208,3 +216,13 @@ h2.results {
   .logo img {
     width: 90px;
     height: 40px; }
+
+.animate-enter {
+  -webkit-transition: 1s linear all; /* Chrome */
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.animate-enter.animate-enter-active {
+  opacity: 1;
+}
