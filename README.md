@@ -25,13 +25,10 @@ Then install the Node modules with
 
     node server
 
-  Or alternatively using the nodemon module
 
-    nodemon server
-    
 The demo is also hosted on Heroku here
 
-https://foursquare-demo-aa.herokuapp.com/
+https://movie-app-omdb.herokuapp.com/
 
 ### Who do I talk to?
 
